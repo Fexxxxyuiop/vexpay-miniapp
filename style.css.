@@ -1,0 +1,154 @@
+
+:root {
+  color-scheme: dark;
+  --bg: #090909;
+  --panel: #151515;
+  --gold: #d6b36a;
+  --text: #f5f0e5;
+  --muted: #a59c8c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: #090909;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at top, #292113 0%, #090909 65%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+header, main, footer {
+  color: var(--text);
+}
+
+header {
+  text-align: center;
+  padding: 28px 16px;
+  border-bottom: 1px solid #3b3020;
+}
+
+.logo {
+  color: var(--gold);
+  font-size: 30px;
+  font-weight: 900;
+  letter-spacing: 5px;
+}
+
+.online, .eyebrow {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 11px;
+}
+
+.tagline {
+  color: #d7c8a9;
+  margin-top: 15px;
+}
+
+main {
+  width: 100%;
+  max-width: 620px;
+  margin: auto;
+  padding: 20px 14px;
+}
+
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-bottom: 18px;
+}
+
+.menu button,
+.menu a,
+button {
+  display: block;
+  padding: 13px 10px;
+  border: 1px solid #514126;
+  border-radius: 11px;
+  background: #17140e;
+  color: #e8d7b2;
+  font: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu button.active,
+button.primary,
+.menu a.primary {
+  background: linear-gradient(135deg, #ead39b, #b38a3d);
+  border-color: #e0bd70;
+  color: #15110a;
+  font-weight: 700;
+}
+
+.card {
+  background: linear-gradient(145deg, #191919, #101010);
+  border: 1px solid #3a3020;
+  border-radius: 17px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: 0 12px 32px #0008;
+}
+
+h1, h2 {
+  color: #f5e6c6;
+}
+
+p, label, .small {
+  color: var(--muted);
+}
+
+label {
+  display: block;
+  margin: 14px 0 7px;
+  font-size: 13px;
+}
+
+input, select, textarea {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #514126;
+  border-radius: 10px;
+  background: #0b0b0b;
+  color: #fff1d1;
+  font: inherit;
+}
+
+input::placeholder {
+  color: #777064;
+}
+
+button.primary {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px;
+}
+
+.gold, .rate {
+  color: var(--gold);
+}
+
+.item {
+  padding: 13px 0;
+  border-bottom: 1px solid #393020;
+}
+
+footer {
+  padding: 20px;
+  text-align: center;
+  color: #817968;
+  font-size: 12px;
+}
+
+[hidden] {
+  display: none !important;
+}
