@@ -1,151 +1,307 @@
+
+
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#09090b">
-  <title>VexPay | Exchange</title>
-  <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>VexPay — Digital Asset Exchange</title>
+
+<style>
+
+:root{--bg:#090909;--panel:#141414;--gold:#d9b568;--text:#f6f1e7;--muted:#9a958b}
+
+*{box-sizing:border-box}
+
+body{margin:0;background:radial-gradient(ellipse at top,#282014 0,#090909 55%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;min-height:100vh}
+
+header{padding:25px 18px 18px;text-align:center;border-bottom:1px solid #302719}
+
+.logo{font-size:30px;font-weight:900;letter-spacing:5px;color:var(--gold)}
+
+.online{font-size:10px;letter-spacing:4px;color:#9c8b64;margin-top:7px}
+
+.tagline{font-size:14px;color:#d0c7b6;margin-top:16px}
+
+main{max-width:620px;margin:auto;padding:18px 14px 45px}
+
+.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:18px}
+
+button,.menu a{font:inherit;cursor:pointer;text-decoration:none;text-align:center;border:1px solid #3a3020;border-radius:12px;padding:13px 8px;background:#15130f;color:var(--text)}
+
+.menu button.active,.primary{background:linear-gradient(135deg,#e6ca88,#b58b3e)!important;color:#17120a!important;border-color:var(--gold)!important;font-weight:750}
+
+.menu a{display:block}
+
+.card{background:linear-gradient(145deg,#181818,#101010);border:1px solid #30291e;border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 10px 30px #0005}
+
+.eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+
+h1{font-size:25px;margin:10px 0}
+
+h2{font-size:20px;margin:9px 0 16px}
+
+p{line-height:1.55;color:#b9b2a5;font-size:14px}
+
+.rate{font-size:18px;font-weight:700;margin:14px 0 5px}
+
+label{display:block;font-size:12px;color:#b9b2a5;margin:15px 0 7px}
+
+input,select,textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #3a342a;background:#0b0b0b;color:#fff;font:inherit}
+
+button.primary{width:100%;margin-top:17px;padding:14px}
+
+.small{font-size:11px;color:var(--muted)}
+
+.item{padding:13px 0;border-bottom:1px solid #30291e}
+
+.item:last-child{border:0}
+
+.gold{color:var(--gold)}
+
+[hidden]{display:none!important}
+
+footer{text-align:center;color:#777168;font-size:11px;padding:12px}
+
+</style>
+
 </head>
+
 <body>
-  <header class="top">
-    <div class="logo">VEX<span>PAY</span></div>
-    <div class="status"><i></i> ONLINE</div>
-  </header>
 
-  <main>
-    <section id="home" class="hero">
-      <div class="tag">DIGITAL ASSET EXCHANGE</div>
-      <h1>Обмен <span>без лишнего.</span></h1>
-      <p>VexPay — панель заявок на обмен USDT и RUB.</p>
-    </section>
+<header>
 
-    <nav class="menu">
-      <button class="menu-btn active" data-page="exchange">Обмен</button>
-      <button class="menu-btn" data-page="requests">Мои заявки</button>
-      <button class="menu-btn" data-page="reviews">Отзывы</button>
-      <a class="menu-btn manager" href="https://t.me/VexPay_Exchange" target="_blank" rel="noopener">Менеджер ↗</a>
-    </nav>
+  <div class="logo">VexPay</div>
 
-    <section id="exchange" class="page panel">
-      <h2>Создать заявку</h2>
-      <div class="rate-row">
-        <span>Направление</span>
-        <strong>USDT ⇄ RUB</strong>
-      </div>
-      <p class="muted">Итоговый курс уточняйте у менеджера.</p>
+  <div class="online">● ONLINE · DIGITAL ASSET EXCHANGE</div>
 
-      <form id="exchange-form">
+  <div class="tagline">Обмен без лишнего.</div>
+
+</header>
+
+<main>
+
+  <nav class="menu">
+
+    <button class="active" data-page="exchange">⇄ Обмен</button>
+
+    <button data-page="orders">▤ Мои заявки</button>
+
+    <button data-page="reviews">★ Отзывы</button>
+
+    <a href="https://t.me/VexPay_Exchange" target="_blank" rel="noopener">↗ Менеджер</a>
+
+  </nav>
+
+  <section id="exchange">
+
+    <div class="card">
+
+      <div class="eyebrow">Private exchange desk</div>
+
+      <h1>Обмен в пару шагов</h1>
+
+      <p>Оставь заявку, чтобы уточнить условия обмена USDT и RUB у менеджера.</p>
+
+      <div class="rate">USDT → RUB</div>
+
+      <p>Курс уточняйте у менеджера. Курс не фиксируется автоматически.</p>
+
+    </div>
+
+    <div class="card">
+
+      <div class="eyebrow">Новая заявка</div>
+
+      <h2>Оставить заявку</h2>
+
+      <form id="requestForm">
+
         <label for="direction">Направление обмена</label>
+
         <select id="direction">
+
           <option>USDT → RUB</option>
+
           <option>RUB → USDT</option>
+
         </select>
 
         <label for="amount">Сумма</label>
-        <input id="amount" type="number" min="1" step="any" placeholder="Введите сумму" required>
 
-        <label for="contact">Ваш Telegram</label>
-        <input id="contact" type="text" placeholder="@username" required>
+        <input id="amount" type="number" min="1" step="any" placeholder="Например, 100" required>
 
-        <button type="submit">Создать заявку</button>
+        <label for="contact">Твой Telegram</label>
+
+        <input id="contact" placeholder="@username" required>
+
+        <button class="primary" type="submit">Создать заявку</button>
+
       </form>
-      <p id="message" class="muted" aria-live="polite"></p>
-    </section>
 
-    <section id="requests" class="page panel" hidden>
+      <p class="small">Это демоверсия: заявка сохраняется только в этом браузере и не отправляется менеджеру.</p>
+
+      <div id="notice" class="gold" role="status"></div>
+
+    </div>
+
+  </section>
+
+  <section id="orders" hidden>
+
+    <div class="card">
+
+      <div class="eyebrow">Личный раздел</div>
+
       <h2>Мои заявки</h2>
-      <div id="request-list"></div>
-      <p class="muted">История хранится только в этом браузере.</p>
-      <button id="clear" class="secondary" type="button">Очистить историю</button>
-    </section>
 
-    <section id="reviews" class="page panel" hidden>
-      <h2>Отзывы</h2>
-      <p>Мы стремимся сделать обмен понятным и удобным.</p>
-      <p class="muted">Публичные отзывы пока не подключены.</p>
-      <a class="menu-btn manager" href="https://t.me/VexPay_Exchange" target="_blank" rel="noopener">Связаться с менеджером ↗</a>
-    </section>
+      <div id="orderList"><p>Пока заявок нет.</p></div>
 
-    <footer>VexPay · Демоверсия интерфейса</footer>
-  </main>
+      <button id="clearOrders">Очистить историю</button>
 
-  <script>
-    const key = 'vexpay_demo_requests';
-    const form = document.querySelector('#exchange-form');
-    const message = document.querySelector('#message');
-    const list = document.querySelector('#request-list');
+    </div>
 
-    function getRequests() {
-      try { return JSON.parse(localStorage.getItem(key) || '[]'); }
-      catch { return []; }
-    }
+  </section>
 
-    function renderRequests() {
-      list.replaceChildren();
-      const items = getRequests();
+  <section id="reviews" hidden>
 
-      if (!items.length) {
-        const p = document.createElement('p');
-        p.className = 'muted';
-        p.textContent = 'Заявок пока нет.';
-        list.append(p);
-        return;
-      }
+    <div class="card">
 
-      items.slice().reverse().forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'request';
-        const title = document.createElement('strong');
-        title.textContent = item.direction + ' · ' + item.amount;
-        const detail = document.createElement('p');
-        detail.textContent = item.contact + ' · ' + item.date;
-        card.append(title, detail);
-        list.append(card);
-      });
-    }
+      <div class="eyebrow">Отзывы клиентов</div>
 
-    document.querySelectorAll('[data-page]').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.page').forEach(page => page.hidden = true);
-        document.querySelector('#' + button.dataset.page).hidden = false;
-        document.querySelectorAll('[data-page]').forEach(b => b.classList.remove('active'));
-        button.classList.add('active');
-        if (button.dataset.page === 'requests') renderRequests();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-    });
+      <h2>Репутация важна</h2>
 
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      const amount = Number(document.querySelector('#amount').value);
-      const contact = document.querySelector('#contact').value.trim();
+      <p>Здесь будут опубликованы отзывы после их добавления и проверки.</p>
 
-      if (!Number.isFinite(amount) || amount <= 0 || !contact) {
-        message.textContent = 'Проверьте сумму и контакт.';
-        return;
-      }
+      <p class="small">Пока опубликованных отзывов нет.</p>
 
-      const items = getRequests();
-      items.push({
-        direction: document.querySelector('#direction').value,
-        amount,
-        contact,
-        date: new Date().toLocaleString('ru-RU')
-      });
+      <a class="menu primary" style="display:block;padding:13px" href="https://t.me/VexPay_Exchange" target="_blank" rel="noopener">Связаться с менеджером</a>
 
-      localStorage.setItem(key, JSON.stringify(items));
-      form.reset();
-      message.textContent = 'Демо-заявка сохранена на этом устройстве.';
-      renderRequests();
-    });
+    </div>
 
-    document.querySelector('#clear').addEventListener('click', () => {
-      localStorage.removeItem(key);
-      renderRequests();
-    });
+  </section>
 
-    renderRequests();
-  </script>
+</main>
+
+<footer>VexPay · Демоверсия интерфейса</footer>
+
+<script>
+
+const pages = ["exchange","orders","reviews"];
+
+const navButtons = document.querySelectorAll("[data-page]");
+
+function showPage(page){
+
+  pages.forEach(id => document.getElementById(id).hidden = id !== page);
+
+  navButtons.forEach(btn => btn.classList.toggle("active",btn.dataset.page === page));
+
+  if(page === "orders") renderOrders();
+
+}
+
+navButtons.forEach(btn => btn.addEventListener("click",() => showPage(btn.dataset.page)));
+
+const key = "vexpay_demo_requests";
+
+function getOrders(){
+
+  try { return JSON.parse(localStorage.getItem(key) || "[]"); }
+
+  catch(e) { return []; }
+
+}
+
+function renderOrders(){
+
+  const list = document.getElementById("orderList");
+
+  const orders = getOrders();
+
+  if(!orders.length){list.innerHTML="<p>Пока заявок нет.</p>";return;}
+
+  list.replaceChildren();
+
+  orders.slice().reverse().forEach(order => {
+
+    const item = document.createElement("div");
+
+    item.className = "item";
+
+    const title = document.createElement("strong");
+
+    title.textContent = order.direction + " · " + order.amount;
+
+    const detail = document.createElement("p");
+
+    detail.textContent = order.contact + " · " + order.date;
+
+    item.append(title,detail);
+
+    list.append(item);
+
+  });
+
+}
+
+document.getElementById("requestForm").addEventListener("submit",event=>{
+
+  event.preventDefault();
+
+  const amount = Number(document.getElementById("amount").value);
+
+  const contact = document.getElementById("contact").value.trim();
+
+  if(!Number.isFinite(amount) || amount <= 0 || !contact){
+
+    document.getElementById("notice").textContent = "Проверь сумму и Telegram.";
+
+    return;
+
+  }
+
+  const orders = getOrders();
+
+  orders.push({
+
+    direction:document.getElementById("direction").value,
+
+    amount:amount,
+
+    contact:contact,
+
+    date:new Date().toLocaleString("ru-RU")
+
+  });
+
+  localStorage.setItem(key,JSON.stringify(orders));
+
+  document.getElementById("notice").textContent = "Демо-заявка сохранена!";
+
+  document.getElementById("amount").value = "";
+
+  renderOrders();
+
+});
+
+document.getElementById("clearOrders").addEventListener("click",()=>{
+
+  localStorage.removeItem(key);
+
+  renderOrders();
+
+});
+
+renderOrders();
+
+</script>
+
 </body>
+
 </html>
