@@ -160,7 +160,7 @@ document.getElementById("calcAmount").addEventListener("input", function() {
 
       </form>
 
-      <p class="small">Это демоверсия: заявка сохраняется только в этом браузере и не отправляется менеджеру.</p>
+      <p class="small">После оформления откроется Telegram для отправки заявки менеджеру.</p>
 
       <div id="notice" class="gold" role="status"></div>
 
@@ -296,13 +296,26 @@ document.getElementById("requestForm").addEventListener("submit",event=>{
 
   });
 
-  localStorage.setItem(key,JSON.stringify(orders));
 
-  document.getElementById("notice").textContent = "Демо-заявка сохранена!";
+localStorage.setItem(key,JSON.stringify(orders));
 
-  document.getElementById("amount").value = "";
+const direction = document.getElementById("direction").value;
+const message =
+  "Новая заявка VexPay%0A" +
+  "Направление: " + encodeURIComponent(direction) + "%0A" +
+  "Сумма: " + encodeURIComponent(String(amount)) + "%0A" +
+  "Telegram клиента: " + encodeURIComponent(contact);
 
-  renderOrders();
+document.getElementById("notice").textContent =
+  "Заявка сохранена. Открываем Telegram…";
+
+document.getElementById("amount").value = "";
+
+renderOrders();
+
+window.location.href =
+  "https://t.me/VexPay_Exchange?text=" + message;
+
 
 });
 
