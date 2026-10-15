@@ -108,7 +108,23 @@ footer{text-align:center;color:#777168;font-size:11px;padding:12px}
 
       <p>Оставь заявку, чтобы уточнить условия обмена USDT и RUB у менеджера.</p>
 
-      <div class="rate">USDT → RUB</div>
+      <div class="rate">1 USDT = 96,7 ₽</div>
+<p>Минимальный обмен: 5 USDT (483,50 ₽)</p>
+
+<label for="calcAmount">Сколько USDT?</label>
+<input id="calcAmount" type="number" min="5" step="any" value="5">
+
+<div class="rate" id="calcResult">К получению: 483,50 ₽</div>
+
+<script>
+document.getElementById("calcAmount").addEventListener("input", function() {
+  const amount = Number(this.value);
+  document.getElementById("calcResult").textContent =
+    amount >= 5 && Number.isFinite(amount)
+      ? "К получению: " + (amount * 96.7).toLocaleString("ru-RU", {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " ₽"
+      : "Минимум: 5 USDT";
+});
+</script>
 
       <p>Курс уточняйте у менеджера. Курс не фиксируется автоматически.</p>
 
