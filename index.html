@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0d">
+  <title>VexPay | Exchange</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="logo">VEX<span>PAY</span></div>
+    <div class="status"><i></i> ONLINE</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="tag">DIGITAL ASSET EXCHANGE</div>
+      <h1>Обмен <span>без лишнего.</span></h1>
+      <p>VexPay — простой интерфейс для заявок на обмен USDT и RUB.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Курс обмена</h2>
+      <div class="rate-row">
+        <span>USDT → RUB</span>
+        <strong>Уточняйте у менеджера</strong>
+      </div>
+      <p class="muted">Курс не фиксируется автоматически.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Оставить заявку</h2>
+      <form id="exchange-form">
+        <label for="direction">Направление</label>
+        <select id="direction">
+          <option value="USDT → RUB">USDT → RUB</option>
+          <option value="RUB → USDT">RUB → USDT</option>
+        </select>
+
+        <label for="amount">Сумма</label>
+        <input id="amount" type="number" min="1" step="any" placeholder="Введите сумму" required>
+
+        <label for="contact">Контакт в Telegram</label>
+        <input id="contact" type="text" placeholder="@username" required>
+
+        <button type="submit">Создать заявку</button>
+      </form>
+      <p id="message" class="muted" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Мои заявки на этом устройстве</h2>
+      <div id="requests"><p class="muted">Заявок пока нет.</p></div>
+      <button id="clear" class="secondary" type="button">Очистить историю</button>
+    </section>
+
+    <footer>VexPay · Демоверсия интерфейса</footer>
+  </main>
+
+  <script>
+    const form = document.querySelector('#exchange-form');
+    const message = document.querySelector('#message');
+    const list = document.querySelector('#requests');
+    const key = 'vexpay_demo_requests';
+
+    function render() {
+      let items = [];
+      try { items = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+      list.replaceChildren();
+      if (!items.length) {
+        const p = document.createElement('p');
+        p.className = 'muted';
+        p.textContent = 'Заявок пока нет.';
+        list.append(p);
+        return;
+      }
+      items.slice().reverse().forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'request';
+        const title = document.createElement('strong');
+        title.textContent = item.direction + ' · ' + item.amount;
+        const detail = document.createElement('p');
+        detail.textContent = item.contact + ' · ' + item.date;
+        card.append(title, detail);
+        list.append(card);
+      });
+    }
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      const amount = Number(document.querySelector('#amount').value);
+      const contact = document.querySelector('#contact').value.trim();
+      if (!Number.isFinite(amount) || amount <= 0 || !contact) {
+        message.textContent = 'Проверьте сумму и контакт.';
+        return;
+      }
+      let items = [];
+      try { items = JSON.parse(localStorage.getItem(key) || '[]'); } catch {}
+      items.push({
+        direction: document.querySelector('#direction').value,
+        amount,
+        contact,
+        date: new Date().toLocaleString('ru-RU')
+      });
+      localStorage.setItem(key, JSON.stringify(items));
+      form.reset();
+      message.textContent = 'Демо-заявка сохранена на этом устройстве.';
+      render();
+    });
+
+    document.querySelector('#clear').addEventListener('click', () => {
+      localStorage.removeItem(key);
+      message.textContent = 'История на этом устройстве очищена.';
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
