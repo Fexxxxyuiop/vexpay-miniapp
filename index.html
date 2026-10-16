@@ -313,6 +313,23 @@ $("adminContent").hidden = false;
     const item = document.createElement("div");
     item.className = "item";
     item.textContent = r.name + " · " + "★".repeat(r.stars) + " · " + r.text;
+    const del = document.createElement("button");
+del.textContent = "Удалить отзыв";
+del.className = "primary";
+del.addEventListener("click", () => {
+  const all = read("vexpay_reviews");
+  const index = all.findIndex(x =>
+    x.name === r.name &&
+    x.text === r.text &&
+    x.date === r.date &&
+    x.stars === r.stars
+  );
+  if (index !== -1) all.splice(index, 1);
+  save("vexpay_reviews", all);
+  renderReviews();
+  $("adminLogin").click();
+});
+item.appendChild(del);
     $("adminReviews").appendChild(item);
   });
 });
