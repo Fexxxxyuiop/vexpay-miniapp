@@ -140,6 +140,13 @@ footer{text-align:center;padding:16px;color:#8d826b;font-size:11px}
       <button class="primary" id="adminLogin">Открыть демонстрационную панель</button>
       <div id="adminNotice" role="status"></div>
       <div id="adminContent" hidden>
+      <div class="item">
+  <h3>Управление курсом USDT/RUB</h3>
+  <label for="adminRate">Новый курс:</label>
+  <input id="adminRate" type="number" min="0.01" step="any" value="95">
+  <button class="primary" id="saveRate">Сохранить курс</button>
+  <p id="rateNotice" class="muted"></p>
+</div>
         <div class="rate"><span>Заявок на этом устройстве</span><strong id="adminOrderCount">0</strong></div>
         <div class="rate"><span>Отзывов на этом устройстве</span><strong id="adminReviewCount">0</strong></div>
         <h3 style="margin-top:20px">Заявки</h3>
