@@ -1,336 +1,312 @@
 
-
 <!DOCTYPE html>
-
 <html lang="ru">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>VexPay — Digital Asset Exchange</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>VexPay | Exchange</title>
 <style>
-
-:root{--bg:#090909;--panel:#141414;--gold:#d9b568;--text:#f6f1e7;--muted:#9a958b}
-
+:root{--bg:#080808;--card:#111;--gold:#f3c65e;--gold2:#bd8b29;--text:#f8f5ec;--muted:#aaa}
 *{box-sizing:border-box}
-
-body{margin:0;background:radial-gradient(ellipse at top,#282014 0,#090909 55%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;min-height:100vh}
-
-header{padding:25px 18px 18px;text-align:center;border-bottom:1px solid #302719}
-
-.logo{font-size:30px;font-weight:900;letter-spacing:5px;color:var(--gold)}
-
-.online{font-size:10px;letter-spacing:4px;color:#9c8b64;margin-top:7px}
-
-.tagline{font-size:14px;color:#d0c7b6;margin-top:16px}
-
-main{max-width:620px;margin:auto;padding:18px 14px 45px}
-
-.menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:18px}
-
-button,.menu a{font:inherit;cursor:pointer;text-decoration:none;text-align:center;border:1px solid #3a3020;border-radius:12px;padding:13px 8px;background:#15130f;color:var(--text)}
-
-.menu button.active,.primary{background:linear-gradient(135deg,#e6ca88,#b58b3e)!important;color:#17120a!important;border-color:var(--gold)!important;font-weight:750}
-
-.menu a{display:block}
-
-.card{background:linear-gradient(145deg,#181818,#101010);border:1px solid #30291e;border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 10px 30px #0005}
-
-.eyebrow{font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
-
-h1{font-size:25px;margin:10px 0}
-
-h2{font-size:20px;margin:9px 0 16px}
-
-p{line-height:1.55;color:#b9b2a5;font-size:14px}
-
-.rate{font-size:18px;font-weight:700;margin:14px 0 5px}
-
-label{display:block;font-size:12px;color:#b9b2a5;margin:15px 0 7px}
-
-input,select,textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #3a342a;background:#0b0b0b;color:#fff;font:inherit}
-
-button.primary{width:100%;margin-top:17px;padding:14px}
-
-.small{font-size:11px;color:var(--muted)}
-
-.item{padding:13px 0;border-bottom:1px solid #30291e}
-
-.item:last-child{border:0}
-
-.gold{color:var(--gold)}
-
-[hidden]{display:none!important}
-
-footer{text-align:center;color:#777168;font-size:11px;padding:12px}
-
+body{margin:0;background:radial-gradient(ellipse at top,#241b0b 0%,#080808 48%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;min-height:100vh}
+header{padding:26px 18px 18px;text-align:center;border-bottom:1px solid #3b2b12}
+.logo{font-size:34px;font-weight:900;letter-spacing:3px;color:var(--gold);text-shadow:0 0 24px #8d651b}
+.sub{font-size:11px;letter-spacing:2px;color:#c9b98f;margin-top:5px}
+main{max-width:520px;margin:auto;padding:16px 14px 100px}
+.card{background:linear-gradient(145deg,#151515,#0c0c0c);border:1px solid #3b301c;border-radius:17px;padding:18px;margin-bottom:14px;box-shadow:0 8px 28px #0007}
+h2{font-size:19px;margin:0 0 16px;color:var(--gold)}
+h3{font-size:15px;margin:0 0 10px}
+p{color:var(--muted);font-size:13px;line-height:1.5}
+label{display:block;font-size:12px;color:#c9b98f;margin:13px 0 7px}
+input,select,textarea{width:100%;padding:13px;border-radius:10px;border:1px solid #393327;background:#090909;color:white;font:inherit;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+textarea{resize:vertical;min-height:85px}
+button,.button{border:0;border-radius:10px;padding:13px 15px;font-weight:750;cursor:pointer;text-align:center;text-decoration:none;display:block;width:100%;font-size:14px}
+.primary{background:linear-gradient(110deg,#ffe49a,#dca83b,#f4d47f);color:#171006;margin-top:15px}
+.secondary{background:#181818;color:var(--gold);border:1px solid #544322;margin-top:10px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:15px 0}
+.tab{padding:11px 4px;background:#111;color:#bdb5a4;border:1px solid #30291b;font-size:12px}
+.tab.active{background:#352810;color:#ffdc86;border-color:var(--gold)}
+.page{display:none}.page.active{display:block}
+.rate{display:flex;justify-content:space-between;gap:10px;background:#17130b;border-radius:10px;padding:13px;margin-top:12px;font-size:13px}
+.gold{color:var(--gold)}.muted{color:var(--muted);font-size:12px}
+.item{border:1px solid #30291b;background:#0d0d0d;padding:13px;border-radius:12px;margin:10px 0}
+.stars{color:var(--gold);letter-spacing:3px;font-size:22px}
+.starbtn{display:flex;gap:8px;margin:8px 0}
+.starbtn button{background:#191919;color:#777;border:1px solid #393023;font-size:22px;padding:8px}
+.starbtn button.chosen{color:var(--gold);border-color:var(--gold)}
+footer{text-align:center;padding:16px;color:#8d826b;font-size:11px}
+#notice{font-size:13px;color:var(--gold);margin-top:10px;line-height:1.5}
+.badge{display:inline-block;border:1px solid #5a4824;border-radius:20px;padding:4px 8px;color:var(--gold);font-size:11px}
+.row{display:flex;gap:8px;align-items:center}
+.row>*{flex:1}
 </style>
-
 </head>
-
 <body>
-
 <header>
-
-  <div class="logo">VexPay</div>
-
-  <div class="online">● ONLINE · DIGITAL ASSET EXCHANGE</div>
-
-  <div class="tagline">Обмен без лишнего.</div>
-
+  <div class="logo">♛ VEXPAY</div>
+  <div class="sub">EXCHANGE · БЫСТРО · ПРОЗРАЧНО</div>
 </header>
 
 <main>
+  <div class="card">
+    <div class="badge">● EXCHANGE SERVICE</div>
+    <h2 style="margin-top:14px">Обмен без лишних сложностей</h2>
+    <p>Рассчитай сумму, создай заявку и свяжись с менеджером.</p>
+    <div class="rate"><span>Направление</span><strong class="gold">USDT ↔ RUB</strong></div>
+    <div class="rate"><span>Менеджер</span><strong>@VexPay_Owner</strong></div>
+  </div>
 
-  <nav class="menu">
-
-    <button class="active" data-page="exchange">⇄ Обмен</button>
-
-    <button data-page="orders">▤ Мои заявки</button>
-
-    <button data-page="reviews">★ Отзывы</button>
-
-    <a href="https://t.me/VexPay_Owner" target="_blank" rel="noopener">↗ Менеджер</a>
-
+  <nav class="tabs">
+    <button class="tab active" data-page="exchange">Обмен</button>
+    <button class="tab" data-page="orders">Заявки</button>
+    <button class="tab" data-page="reviews">Отзывы</button>
+  </nav>
+  <nav class="tabs" style="margin-top:-7px">
+    <button class="tab" data-page="manager">Менеджер</button>
+    <button class="tab" data-page="admin">Админ</button>
   </nav>
 
-  <section id="exchange">
-
+  <section id="exchange" class="page active">
     <div class="card">
-
-      <div class="eyebrow">Private exchange desk</div>
-
-      <h1>Обмен в пару шагов</h1>
-
-      <p>Оставь заявку, чтобы уточнить условия обмена USDT и RUB у менеджера.</p>
-
-      <div class="rate">1 USDT = 96,7 ₽</div>
-<p>Минимальный обмен: 5 USDT (483,50 ₽)</p>
-
-<label for="calcAmount">Сколько USDT?</label>
-<input id="calcAmount" type="number" min="5" step="any" value="5">
-
-<div class="rate" id="calcResult">К получению: 483,50 ₽</div>
-
-<script>
-document.getElementById("calcAmount").addEventListener("input", function() {
-  const amount = Number(this.value);
-  document.getElementById("calcResult").textContent =
-    amount >= 5 && Number.isFinite(amount)
-      ? "К получению: " + (amount * 96.7).toLocaleString("ru-RU", {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " ₽"
-      : "Минимум: 5 USDT";
-});
-</script>
-
-      <p>Курс уточняйте у менеджера. Курс не фиксируется автоматически.</p>
-
+      <h2>Калькулятор обмена</h2>
+      <label>Направление</label>
+      <select id="direction">
+        <option value="USDT-RUB">USDT → RUB</option>
+        <option value="RUB-USDT">RUB → USDT</option>
+      </select>
+      <label>Курс (₽ за 1 USDT)</label>
+      <input id="rate" type="number" min="0.01" step="any" value="95">
+      <label id="amountLabel">Сумма в USDT</label>
+      <input id="amount" type="number" min="0.01" step="any" placeholder="Введите сумму">
+      <div class="rate"><span>Предварительно получите</span><strong class="gold" id="result">0 ₽</strong></div>
+      <p>Итоговый курс и условия подтверждаются менеджером перед сделкой.</p>
+      <label>Твой Telegram (@username)</label>
+      <input id="contact" placeholder="@username">
+      <button class="primary" id="createOrder">Создать заявку</button>
+      <div id="exchangeNotice" role="status"></div>
     </div>
-
-    <div class="card">
-
-      <div class="eyebrow">Новая заявка</div>
-
-      <h2>Оставить заявку</h2>
-
-      <form id="requestForm">
-
-        <label for="direction">Направление обмена</label>
-
-        <select id="direction">
-
-          <option>USDT → RUB</option>
-
-          <option>RUB → USDT</option>
-
-        </select>
-
-        <label for="amount">Сумма</label>
-
-        <input id="amount" type="number" min="1" step="any" placeholder="Например, 100" required>
-
-        <label for="contact">Твой Telegram</label>
-
-        <input id="contact" placeholder="@username" required>
-
-        <button class="primary" type="submit">Создать заявку</button>
-
-      </form>
-
-      <p class="small">После оформления откроется Telegram для отправки заявки менеджеру.</p>
-
-      <div id="notice" class="gold" role="status"></div>
-
-    </div>
-
   </section>
 
-  <section id="orders" hidden>
-
+  <section id="orders" class="page">
     <div class="card">
-
-      <div class="eyebrow">Личный раздел</div>
-
       <h2>Мои заявки</h2>
-
-      <div id="orderList"><p>Пока заявок нет.</p></div>
-
-      <button id="clearOrders">Очистить историю</button>
-
+      <p>На этом этапе заявки отображаются только в этом браузере.</p>
+      <div id="ordersList"></div>
     </div>
-
   </section>
 
-  <section id="reviews" hidden>
-
+  <section id="reviews" class="page">
     <div class="card">
-
-      <div class="eyebrow">Отзывы клиентов</div>
-
-      <h2>Репутация важна</h2>
-
-      <p>Здесь будут опубликованы отзывы после их добавления и проверки.</p>
-
-      <p class="small">Пока опубликованных отзывов нет.</p>
-
-      <a class="menu primary" style="display:block;padding:13px" href="https://t.me/VexPay_Exchange" target="_blank" rel="noopener">Связаться с менеджером</a>
-
+      <h2>Отзывы клиентов</h2>
+      <div id="ratingSummary" class="rate">Пока нет отзывов</div>
+      <div id="reviewsList"></div>
     </div>
-
+    <div class="card">
+      <h2>Оставить отзыв</h2>
+      <label>Твоя оценка</label>
+      <div class="starbtn" id="starPicker">
+        <button type="button" data-star="1">★</button>
+        <button type="button" data-star="2">★</button>
+        <button type="button" data-star="3">★</button>
+        <button type="button" data-star="4">★</button>
+        <button type="button" data-star="5" class="chosen">★</button>
+      </div>
+      <label>Имя или Telegram</label>
+      <input id="reviewName" maxlength="60" placeholder="@username">
+      <label>Текст отзыва</label>
+      <textarea id="reviewText" maxlength="1000" placeholder="Расскажи, как прошёл обмен"></textarea>
+      <button class="primary" id="sendReview">Отправить отзыв</button>
+      <div id="reviewNotice" role="status"></div>
+    </div>
   </section>
 
+  <section id="manager" class="page">
+    <div class="card">
+      <h2>Связь с менеджером</h2>
+      <p>По вопросам заявки, курса и условий обмена напиши менеджеру в Telegram.</p>
+      <div class="rate"><span>Менеджер</span><strong class="gold">@VexPay_Owner</strong></div>
+      <a class="button primary" href="https://t.me/VexPay_Owner" target="_blank" rel="noopener">Открыть Telegram</a>
+    </div>
+  </section>
+
+  <section id="admin" class="page">
+    <div class="card">
+      <h2>Панель администратора</h2>
+      <p>Это предварительный интерфейс. Данные здесь локальные, а настоящая защита и общая база ещё не подключены.</p>
+      <label>Код доступа для демонстрации</label>
+      <input id="adminCode" type="password" placeholder="Код доступа">
+      <button class="primary" id="adminLogin">Открыть демонстрационную панель</button>
+      <div id="adminNotice" role="status"></div>
+      <div id="adminContent" hidden>
+        <div class="rate"><span>Заявок на этом устройстве</span><strong id="adminOrderCount">0</strong></div>
+        <div class="rate"><span>Отзывов на этом устройстве</span><strong id="adminReviewCount">0</strong></div>
+        <h3 style="margin-top:20px">Заявки</h3>
+        <div id="adminOrders"></div>
+        <h3 style="margin-top:20px">Отзывы</h3>
+        <div id="adminReviews"></div>
+      </div>
+    </div>
+  </section>
+  <footer>VEXPAY · Exchange<br>Курс и условия необходимо подтвердить у менеджера.</footer>
 </main>
 
-<footer>VexPay · Демоверсия интерфейса</footer>
-
 <script>
-
-const pages = ["exchange","orders","reviews"];
-
-const navButtons = document.querySelectorAll("[data-page]");
-
-function showPage(page){
-
-  pages.forEach(id => document.getElementById(id).hidden = id !== page);
-
-  navButtons.forEach(btn => btn.classList.toggle("active",btn.dataset.page === page));
-
-  if(page === "orders") renderOrders();
-
-}
-
-navButtons.forEach(btn => btn.addEventListener("click",() => showPage(btn.dataset.page)));
-
-const key = "vexpay_demo_requests";
-
-function getOrders(){
-
+const $ = id => document.getElementById(id);
+const read = key => {
   try { return JSON.parse(localStorage.getItem(key) || "[]"); }
+  catch { return []; }
+};
+const save = (key, value) => localStorage.setItem(key, JSON.stringify(value));
+let selectedStars = 5;
 
-  catch(e) { return []; }
-
+function switchPage(id) {
+  document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id === id));
+  document.querySelectorAll("[data-page]").forEach(b => b.classList.toggle("active", b.dataset.page === id));
+  if (id === "orders") renderOrders();
+  if (id === "reviews") renderReviews();
 }
+document.querySelectorAll("[data-page]").forEach(b => b.addEventListener("click", () => switchPage(b.dataset.page)));
 
-function renderOrders(){
-
-  const list = document.getElementById("orderList");
-
-  const orders = getOrders();
-
-  if(!orders.length){list.innerHTML="<p>Пока заявок нет.</p>";return;}
-
-  list.replaceChildren();
-
-  orders.slice().reverse().forEach(order => {
-
-    const item = document.createElement("div");
-
-    item.className = "item";
-
-    const title = document.createElement("strong");
-
-    title.textContent = order.direction + " · " + order.amount;
-
-    const detail = document.createElement("p");
-
-    detail.textContent = order.contact + " · " + order.date;
-
-    item.append(title,detail);
-
-    list.append(item);
-
-  });
-
+function calculate() {
+  const amount = Number($("amount").value);
+  const rate = Number($("rate").value);
+  const direction = $("direction").value;
+  $("amountLabel").textContent = direction === "USDT-RUB" ? "Сумма в USDT" : "Сумма в RUB";
+  let result = 0;
+  if (amount > 0 && rate > 0) result = direction === "USDT-RUB" ? amount * rate : amount / rate;
+  $("result").textContent = direction === "USDT-RUB"
+    ? result.toLocaleString("ru-RU", {maximumFractionDigits:2}) + " ₽"
+    : result.toLocaleString("ru-RU", {maximumFractionDigits:4}) + " USDT";
 }
+["amount","rate","direction"].forEach(id => $(id).addEventListener("input", calculate));
 
-document.getElementById("requestForm").addEventListener("submit",event=>{
-
-  event.preventDefault();
-
-  const amount = Number(document.getElementById("amount").value);
-
-  const contact = document.getElementById("contact").value.trim();
-
-  if(!Number.isFinite(amount) || amount <= 0 || !contact){
-
-    document.getElementById("notice").textContent = "Проверь сумму и Telegram.";
-
+function renderOrders() {
+  const orders = read("vexpay_orders");
+  $("ordersList").innerHTML = "";
+  if (!orders.length) {
+    $("ordersList").innerHTML = '<p>Заявок пока нет.</p>';
     return;
-
   }
-
-  const orders = getOrders();
-
-  orders.push({
-
-    direction:document.getElementById("direction").value,
-
-    amount:amount,
-
-    contact:contact,
-
-    date:new Date().toLocaleString("ru-RU")
-
+  orders.slice().reverse().forEach(o => {
+    const item = document.createElement("div");
+    item.className = "item";
+    item.textContent = "#" + o.id + " · " + o.direction + " · " + o.amount + " · " + o.contact + " · " + o.status + " · " + o.date;
+    $("ordersList").appendChild(item);
   });
-
-
-localStorage.setItem(key,JSON.stringify(orders));
-
-const direction = document.getElementById("direction").value;
-const message =
-  "Новая заявка VexPay%0A" +
-  "Направление: " + encodeURIComponent(direction) + "%0A" +
-  "Сумма: " + encodeURIComponent(String(amount)) + "%0A" +
-  "Telegram клиента: " + encodeURIComponent(contact);
-
-document.getElementById("notice").textContent =
-  "Заявка сохранена. Открываем Telegram…";
-
-document.getElementById("amount").value = "";
-
-renderOrders();
-
-window.location.href =
-  "https://t.me/VexPay_Owner=text" + message;
-
-
-});
-
-document.getElementById("clearOrders").addEventListener("click",()=>{
-
-  localStorage.removeItem(key);
-
+}
+$("createOrder").addEventListener("click", () => {
+  const amount = Number($("amount").value);
+  const rate = Number($("rate").value);
+  const contact = $("contact").value.trim();
+  if (!Number.isFinite(amount) || amount <= 0 || !Number.isFinite(rate) || rate <= 0 || !contact) {
+    $("exchangeNotice").textContent = "Проверь сумму, курс и Telegram-контакт.";
+    return;
+  }
+  const direction = $("direction").value === "USDT-RUB" ? "USDT → RUB" : "RUB → USDT";
+  const orders = read("vexpay_orders");
+  const order = {
+    id: Date.now().toString().slice(-7),
+    direction, amount, rate, contact,
+    estimate: direction === "USDT → RUB" ? amount * rate : amount / rate,
+    status: "Новая",
+    date: new Date().toLocaleString("ru-RU")
+  };
+  orders.push(order);
+  save("vexpay_orders", orders);
+  $("exchangeNotice").textContent = "Заявка сохранена на этом устройстве. Напиши менеджеру, чтобы подтвердить её.";
   renderOrders();
-
+  const message = "Здравствуйте! Заявка VexPay #" + order.id +
+    "\nНаправление: " + direction + "\nСумма: " + amount +
+    "\nКурс: " + rate + "\nМой Telegram: " + contact;
+  window.open("https://t.me/VexPay_Owner?text=" + encodeURIComponent(message), "_blank");
 });
 
+$("starPicker").querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+  selectedStars = Number(b.dataset.star);
+  $("starPicker").querySelectorAll("button").forEach(s => s.classList.toggle("chosen", Number(s.dataset.star) <= selectedStars));
+}));
+$("sendReview").addEventListener("click", () => {
+  const name = $("reviewName").value.trim();
+  const text = $("reviewText").value.trim();
+  if (!name || !text) {
+    $("reviewNotice").textContent = "Заполни имя или Telegram и текст отзыва.";
+    return;
+  }
+  const reviews = read("vexpay_reviews");
+  reviews.push({name, text, stars:selectedStars, date:new Date().toLocaleDateString("ru-RU")});
+  save("vexpay_reviews", reviews);
+  $("reviewNotice").textContent = "Отзыв сохранён на этом устройстве.";
+  $("reviewName").value = "";
+  $("reviewText").value = "";
+  renderReviews();
+});
+function renderReviews() {
+  const reviews = read("vexpay_reviews");
+  $("reviewsList").innerHTML = "";
+  if (!reviews.length) $("reviewsList").innerHTML = "<p>Отзывов пока нет.</p>";
+  let total = 0;
+  reviews.slice().reverse().forEach(r => {
+    total += r.stars;
+    const item = document.createElement("div");
+    item.className = "item";
+    const name = document.createElement("strong");
+    name.textContent = r.name + " ";
+    const stars = document.createElement("div");
+    stars.className = "stars";
+    stars.textContent = "★".repeat(r.stars) + "☆".repeat(5-r.stars);
+    const body = document.createElement("p");
+    body.textContent = r.text;
+    const date = document.createElement("div");
+    date.className = "muted";
+    date.textContent = r.date;
+    item.append(name, stars, body, date);
+    $("reviewsList").appendChild(item);
+  });
+  $("ratingSummary").textContent = reviews.length
+    ? "Средняя оценка: " + (total/reviews.length).toFixed(1) + " / 5 · Отзывов: " + reviews.length
+    : "Пока нет отзывов";
+}
+$("adminLogin").addEventListener("click", () => {
+  $("adminNotice").textContent = "Демонстрационный просмотр. Защищённый вход подключим через сервер.";
+  $("adminContent").hidden = false;
+  const orders = read("vexpay_orders");
+  const reviews = read("vexpay_reviews");
+  $("adminOrderCount").textContent = orders.length;
+  $("adminReviewCount").textContent = reviews.length;
+  $("adminOrders").innerHTML = "";
+  $("adminReviews").innerHTML = "";
+  orders.slice().reverse().forEach(o => {
+    const item = document.createElement("div");
+    item.className = "item";
+    item.textContent = "#" + o.id + " · " + o.direction + " · " + o.amount + " · " + o.contact + " · " + o.status;
+    const select = document.createElement("select");
+    ["Новая","В обработке","Выполнена","Отменена"].forEach(status => {
+      const option = document.createElement("option");
+      option.value = status;
+      option.textContent = status;
+      option.selected = status === o.status;
+      select.appendChild(option);
+    });
+    select.addEventListener("change", () => {
+      const all = read("vexpay_orders");
+      const target = all.find(x => x.id === o.id);
+      if (target) { target.status = select.value; save("vexpay_orders", all); renderOrders(); }
+    });
+    item.appendChild(select);
+    $("adminOrders").appendChild(item);
+  });
+  reviews.slice().reverse().forEach(r => {
+    const item = document.createElement("div");
+    item.className = "item";
+    item.textContent = r.name + " · " + "★".repeat(r.stars) + " · " + r.text;
+    $("adminReviews").appendChild(item);
+  });
+});
+calculate();
 renderOrders();
-
+renderReviews();
 </script>
-
 </body>
-
 </html>
