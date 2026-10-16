@@ -316,6 +316,19 @@ $("adminContent").hidden = false;
     $("adminReviews").appendChild(item);
   });
 });
+$("saveRate").addEventListener("click", () => {
+  const newRate = Number($("adminRate").value);
+
+  if (!Number.isFinite(newRate) || newRate <= 0) {
+    $("rateNotice").textContent = "Введи корректный курс.";
+    return;
+  }
+
+  $("rate").value = newRate;
+  localStorage.setItem("vexpay_rate", String(newRate));
+  $("rateNotice").textContent = "Курс обновлён: " + newRate;
+  calculate();
+});
 calculate();
 renderOrders();
 renderReviews();
