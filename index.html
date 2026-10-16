@@ -269,8 +269,13 @@ function renderReviews() {
     : "Пока нет отзывов";
 }
 $("adminLogin").addEventListener("click", () => {
-  $("adminNotice").textContent = "Демонстрационный просмотр. Защищённый вход подключим через сервер.";
-  $("adminContent").hidden = false;
+  if ($("adminCode").value !== "Zakuson33") {
+  $("adminNotice").textContent = "Неверный пароль!";
+  $("adminContent").hidden = true;
+  return;
+}
+$("adminNotice").textContent = "Вход выполнен.";
+$("adminContent").hidden = false;
   const orders = read("vexpay_orders");
   const reviews = read("vexpay_reviews");
   $("adminOrderCount").textContent = orders.length;
